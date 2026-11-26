@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr.Parts — Автозапчастини Subaru та інші</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: #ffffff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .logo-text span {
+            color: #ff3b30;
+        }
+        .gear-icon {
+            color: #007aff;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .contacts {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .phone-btn {
+            background-color: #007aff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .phone-btn:hover {
+            background-color: #0056b3;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1c1c1e, #2c2c2e);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #aaa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        h2.section-title {
+            margin-bottom: 25px;
+            font-size: 24px;
+            border-left: 5px solid #007aff;
+            padding-left: 10px;
+        }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .category-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: #2c2c2e;
+            border-top: 4px solid #007aff;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1c1c1e;
+        }
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ff3b30;
+            margin-bottom: 15px;
+        }
+        .product-location {
+            font-size: 14px;
+            color: #666;
+        }
+        footer {
+            background: #1c1c1e;
+            color: #aaa;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-text">Dr<span>.</span>arts</div>
+        </div>
+        <div class="contacts">
+            <span>📞 097-927-37-66</span>
+            <a href="tel:0979273766" class="phone-btn">Зателефонувати</a>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <h1>Якісні запчастини для авто</h1>
+        <p>Широкий асортимент деталей в наявності та під замовлення (Subaru, Forester, Outback та інші)</p>
+    </section>
+
+    <div class="container">
+        <!-- Категории -->
+        <h2 class="section-title">Основні категорії</h2>
+        <div class="categories">
+            <div class="category-card">⚙️ Двигатели / Мотори</div>
+            <div class="category-card">🚗 Трансмиссия та КПП</div>
+            <div class="category-card">🛡️ Детали кузова и бамперы</div>
+            <div class="category-card">🛞 Подвеска и диски</div>
+        </div>
+
+        <!-- Товары (примеры из каталога) -->
+        <h2 class="section-title">Популярні товари</h2>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <div class="product-info">
+                    <div class="product-title">Двигатель, мотор Subaru Forester Outback Legacy F.B 2.5</div>
+                    <div class="product-price">112 702.92 грн.</div>
+                    <div class="product-location">📍 Київ, Шевченківський</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-info">
+                    <div class="product-title">АКПП вариатор Subaru forester outback legacy</div>
+                    <div class="product-price">45 081.17 грн.</div>
+                    <div class="product-location">📍 Київ, Голосіївський</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-info">
+                    <div class="product-title">Бампер Subaru outback b16 2022 2023 2024</div>
+                    <div class="product-price">4 508.12 грн.</div>
+                    <div class="product-location">📍 Київ, Голосіївський</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-info">
+                    <div class="product-title">Диск Subaru outback b16 2023</div>
+                    <div class="product-price">11 270.29 грн.</div>
+                    <div class="product-location">📍 Київ, Голосіївський</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <p>&copy; 2026 Dr.Parts. Всі права захищені. Телефон для зв'язку: 097-927-37-66</p>
+    </footer>
+
+</body>
+</html>
