@@ -4,5 +4,5 @@ window.DRPARTS = {
   TELEGRAM: "https://t.me/@Dr_Parts",
   PHONE: "097-927-37-66",
   OLX: "https://drparts.olx.ua/uk/home/"
-  VIBER: "viber://chat?number=%2B380669701600",
+    VIBER: "viber://add?number=380669701600",
 };
