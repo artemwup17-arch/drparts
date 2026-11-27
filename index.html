@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DrParts — автозапчастини Subaru, Range Rover, Audi Q4 e-tron</title>
-<meta name="description" content="DrParts — розборка та вживані автозапчастини Subaru Outback, Legacy, Forester, Range Rover L405, Audi Q4 e-tron. Київ та Чабани.">
+<title>DrParts — автозапчастини Subaru</title>
+<meta name="description" content="DrParts — розборка та вживані автозапчастини Subaru Outback, Legacy, Forester. Київ та Чабани.">
 <style>
   :root{
     --bg:#f5f6f8; --card:#fff; --text:#1c2230; --muted:#6b7385;
@@ -58,6 +58,7 @@
   .price{font-size:1.25rem;font-weight:800}
   .row a{background:var(--dark);color:#fff;padding:8px 14px;border-radius:8px;font-size:.85rem}
   .row a:hover{background:var(--accent)}
+  [hidden]{display:none!important}
   .empty{display:none;text-align:center;color:var(--muted);padding:40px}
 
   /* About */
@@ -75,6 +76,32 @@
   .box p{color:var(--muted)}
   .box a.link{color:var(--accent);font-weight:700}
 
+  .adm{opacity:.55;text-decoration:underline}
+  .adm:hover{opacity:1;color:var(--accent)}
+  .cnt-ph{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.65);color:#fff;font-size:.78rem;padding:3px 8px;border-radius:8px}
+  .photo{position:relative}
+  .card{cursor:pointer}
+  .pm{position:fixed;inset:0;background:rgba(10,14,22,.72);z-index:50;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow:auto}
+  .pm[hidden]{display:none}
+  .pm-box{background:#fff;border-radius:16px;width:min(920px,100%);position:relative;margin:auto;overflow:hidden}
+  .pm-x{position:absolute;top:10px;right:12px;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:1.3rem;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+  #pmBody{display:grid;grid-template-columns:1.2fr 1fr}
+  .pm-gal{background:#eef0f5;padding:12px}
+  .pm-main{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;background:#dfe3ec;border-radius:12px;overflow:hidden}
+  .pm-main img{width:100%;height:100%;object-fit:contain;background:#000}
+  .pm-noph{font-size:4rem;color:#8a92a6}
+  .pm-thumbs{display:flex;gap:8px;margin-top:10px;overflow-x:auto}
+  .pm-thumbs img{width:72px;height:54px;object-fit:cover;border-radius:8px;cursor:pointer;opacity:.6;border:2px solid transparent;flex:none}
+  .pm-thumbs img.on{opacity:1;border-color:var(--accent)}
+  .pm-info{padding:24px;display:flex;flex-direction:column;gap:10px}
+  .pm-info h3{font-size:1.25rem;line-height:1.3;padding-right:34px}
+  .pm-price{font-size:1.7rem;font-weight:800}
+  .pm-desc{color:#3a4257;white-space:pre-line;font-size:.97rem}
+  .pm-btn{display:block;text-align:center;background:var(--accent);color:#fff;padding:13px 16px;border-radius:10px;font-weight:700}
+  .pm-btn:hover{background:var(--accent-dark)}
+  .pm-btn.ghost{background:#fff;color:var(--dark);border:2px solid var(--dark)}
+  .pm-btn.ghost:hover{background:var(--dark);color:#fff}
+  @media(max-width:720px){#pmBody{grid-template-columns:1fr}}
   footer{background:var(--dark);color:#98a0b3;text-align:center;padding:26px 0;font-size:.9rem}
   @media(max-width:640px){nav a{margin-left:12px;font-size:.85rem}.btn.ghost{margin-left:0}}
 </style>
@@ -94,14 +121,14 @@
 
 <div class="hero">
   <div class="container">
-    <h1>Вживані запчастини <span>Subaru</span>, Range Rover та Audi&nbsp;Q4&nbsp;e-tron</h1>
+    <h1>Вживані запчастини <span>Subaru</span> Outback, Legacy, Forester</h1>
     <p>Розборка автомобілів: двигуни, варіатори, кузовні деталі, оптика, салон. Київ та Чабани. Працюємо з 2011 року.</p>
     <a href="#catalog" class="btn">Переглянути каталог</a>
     <a href="#contacts" class="btn ghost">Зв'язатися</a>
     <div class="stats">
-      <div><b>60+</b><small>запчастин у наявності</small></div>
+      <div><b id="cnt">20+</b><small>запчастин у каталозі</small></div>
       <div><b>2011</b><small>на ринку з</small></div>
-      <div><b>3</b><small>марки авто</small></div>
+      <div><b>Subaru</b><small>Outback · Legacy · Forester</small></div>
     </div>
   </div>
 </div>
@@ -112,12 +139,6 @@
     <p class="sub">Знайшли потрібну деталь — зв'яжіться з нами або напишіть на OLX.</p>
     <div class="tools">
       <input id="search" type="search" placeholder="Пошук: бампер, двигун, фара...">
-      <select id="brand">
-        <option value="">Усі марки</option>
-        <option>Subaru</option>
-        <option>Range Rover</option>
-        <option>Audi</option>
-      </select>
       <select id="sort">
         <option value="">Без сортування</option>
         <option value="asc">Спочатку дешевші</option>
@@ -147,7 +168,7 @@
     <h2>Контакти</h2>
     <p class="sub">Зв'яжіться з нами будь-яким зручним способом.</p>
     <div class="contacts">
-      <div class="box"><h3>📞 Телефон</h3><p><a class="link" href="tel:+380000000000">+38 (0XX) XXX-XX-XX</a></p></div>
+      <div class="box"><h3>📞 Телефон</h3><p><a class="link" data-phone href="tel:0979273766">097-927-37-66</a></p></div>
       <div class="box"><h3>📍 Адреси</h3><p>Київ, Голосіївський та Шевченківський райони<br>Чабани</p></div>
       <div class="box"><h3>🛒 Ми на OLX</h3><p><a class="link" href="https://drparts.olx.ua/uk/home/" target="_blank" rel="noopener">Усі оголошення на OLX →</a></p></div>
     </div>
@@ -155,79 +176,355 @@
 </section>
 
 <footer>
-  <div class="container">© <span id="year"></span> DrParts. Автозапчастини Subaru, Range Rover, Audi.</div>
+  <div class="container">© <span id="year"></span> DrParts. Автозапчастини Subaru. · <a href="admin.html" class="adm">Керування товарами</a></div>
 </footer>
 
+<div class="pm" id="pm" hidden>
+  <div class="pm-box">
+    <button class="pm-x" data-close aria-label="Закрити">×</button>
+    <div id="pmBody"></div>
+  </div>
+</div>
+
+<script src="config.js"></script>
 <script>
-  // ====== ТОВАРИ ======
-  // Щоб додати фото: вкажіть шлях у поле img, наприклад img:"photos/bumper.jpg"
-  // Щоб додати товар: скопіюйте один рядок і змініть дані.
-  const OLX = "https://drparts.olx.ua/uk/home/";
-  const products = [
-    {name:"Корпус повітряного фільтра Subaru Outback Legacy B16 2020", brand:"Subaru", price:6762, city:"Чабани", img:""},
-    {name:"Розборка Subaru Outback B16 2020–2023", brand:"Subaru", price:4508, city:"Київ, Голосіївський", img:""},
-    {name:"Варіатор Subaru Outback B16 (2.5, бензин)", brand:"Subaru", price:4508, city:"Київ, Голосіївський", img:""},
-    {name:"Решітка радіатора, накладка бампера Subaru Outback B16 рестайл 2023", brand:"Subaru", price:6762, city:"Чабани", img:""},
-    {name:"АКПП варіатор Subaru Forester / Outback / Legacy 2020–2023", brand:"Subaru", price:45081, city:"Київ, Голосіївський", img:""},
-    {name:"Підсилювач HARMAN KARDON Subaru Outback Legacy B15 B16", brand:"Subaru", price:11270, city:"Чабани", img:""},
-    {name:"Диск Subaru Outback B16 2023", brand:"Subaru", price:11270, city:"Київ, Голосіївський", img:""},
-    {name:"Глушник, вихлоп Range Rover L405", brand:"Range Rover", price:29303, city:"Київ, Голосіївський", img:""},
-    {name:"Бампер Subaru Outback B16 2022–2024", brand:"Subaru", price:4508, city:"Київ, Голосіївський", img:""},
-    {name:"Двигун Subaru Forester / Outback / Legacy FB 2.5", brand:"Subaru", price:112703, city:"Київ, Шевченківський", img:""},
-    {name:"Підрамник Subaru Forester Outback Legacy B16", brand:"Subaru", price:9016, city:"Київ, Голосіївський", img:""},
-    {name:"Решітка радіатора Subaru Outback Legacy B16 2023", brand:"Subaru", price:11270, city:"Київ, Голосіївський", img:""},
-    {name:"Бампер Subaru Outback 2023–2024", brand:"Subaru", price:4508, city:"Чабани", img:""},
-    {name:"Полиця багажника, органайзер Subaru Outback B16 2020–2023", brand:"Subaru", price:2600, city:"Чабани", img:""},
-    {name:"Селектор АКПП, шайба Range Rover L405", brand:"Range Rover", price:15778, city:"Київ, Шевченківський", img:""},
-    {name:"Рейлінг Subaru Outback B16 2020–2023", brand:"Subaru", price:6762, city:"Чабани", img:""},
-    {name:"Двері Subaru Outback 2023–2024", brand:"Subaru", price:4508, city:"Чабани", img:""},
-    {name:"Електродвигун Audi Q4 e-tron / VW ID.4", brand:"Audi", price:128481, city:"Чабани", img:""},
-    {name:"AIR bag, ремінь безпеки, торпедо Subaru Outback Legacy B16", brand:"Subaru", price:6762, city:"Київ, Голосіївський", img:""},
-    {name:"Телевізор, панель установча Subaru Outback Legacy B16 2020–23", brand:"Subaru", price:27049, city:"Київ, Шевченківський", img:""},
-    {name:"Ліхтар задній Subaru Outback 2020–2023", brand:"Subaru", price:11270, city:"Чабани", img:""},
-    {name:"Навігація, монітор, мультимедіа Subaru Outback Legacy B16", brand:"Subaru", price:11270, city:"Київ, Шевченківський", img:""},
-    {name:"Чверть, поріг, дах, задня панель, корито Audi Q4 e-tron", brand:"Audi", price:33811, city:"Чабани", img:""},
-    {name:"Бампер Audi Q4 e-tron", brand:"Audi", price:37192, city:"Чабани", img:""},
-    {name:"Ліхтар задній (стоп) Audi Q4 e-tron", brand:"Audi", price:11270, city:"Чабани", img:""},
-    {name:"Двигун Subaru Outback Legacy Ascent 2.4T", brand:"Subaru", price:108195, city:"Київ, Голосіївський", img:""},
-    {name:"Капот Subaru Outback Legacy B16 2020–2023", brand:"Subaru", price:31557, city:"Чабани", img:""},
-    {name:"Телевізор, панель установча Subaru Outback Legacy 2020–23", brand:"Subaru", price:4508, city:"Київ, Голосіївський", img:""}
+  // Налаштування беруться з config.js
+  const C = window.DRPARTS || {};
+  const OLX = C.OLX || "https://drparts.olx.ua/uk/home/";
+
+  // Резервний список: показується, якщо база ще не підключена
+  let products = [
+    {
+      "name": "Ляда крышка багажника Subaru crosstrek 2023 2024",
+      "price": 81122,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/lyada-kryshka-bagazhnika-subaru-crosstrek-2023-2024-IDYDZCC.html",
+      "description": "",
+      "images": [
+        "https://ireland.apollo.olxcdn.com:443/v1/files/4upzqvu01f9z1-UA/image;s=546x359;q=80"
+      ]
+    },
+    {
+      "name": "Капот Subaru outback legacy b16 2020 2023",
+      "price": 31548,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/kapot-subaru-outback-legacy-b16-2020-2023-IDTXRN3.html",
+      "description": "",
+      "images": [
+        "https://ireland.apollo.olxcdn.com:443/v1/files/qozm9p64hl693-UA/image;s=510x365;q=80"
+      ]
+    },
+    {
+      "name": "Телевизор панель установочная Subaru outback  legacy 2020-23",
+      "price": 4507,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/televizor-panel-ustanovochnaya-subaru-outback-legacy-2020-23-IDV6pXu.html",
+      "description": "",
+      "images": [
+        "https://ireland.apollo.olxcdn.com:443/v1/files/ew7eep7rjp1l3-UA/image;s=557x359;q=80"
+      ]
+    },
+    {
+      "name": "Двигатель, мотор Subaru outback legacy ascent 2,4T",
+      "price": 108163,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/dvigatel-motor-subaru-outback-legacy-ascent-2-4t-IDUWRRG.html",
+      "description": "",
+      "images": [
+        "https://ireland.apollo.olxcdn.com:443/v1/files/rv0b0863cj7r2-UA/image;s=510x374;q=80"
+      ]
+    },
+    {
+      "name": "Бампер задний Subaru outback b16 2023 2024",
+      "price": 4507,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/bamper-zadniy-subaru-outback-b16-2023-2024-IDWwSyf.html",
+      "description": "",
+      "images": [
+        "https://ireland.apollo.olxcdn.com:443/v1/files/86l33fhtiy9v1-UA/image;s=638x359;q=80"
+      ]
+    },
+    {
+      "name": "АКПП вариатор Subaru outback legacy b16",
+      "price": 63095,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/akpp-variator-subaru-outback-legacy-b16-IDUWJkE.html",
+      "description": "",
+      "images": [
+        "https://ireland.apollo.olxcdn.com:443/v1/files/demzdm0g0o19-UA/image;s=636x359;q=80"
+      ]
+    },
+    {
+      "name": "Корпус воздушного фильтра Subaru outback legacy b16 2020",
+      "price": 6760,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/korpus-vozdushnogo-filtra-subaru-outback-legacy-b16-2020-IDTAvnX.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Розборка Разборка Subaru Outback b16 2020 2023",
+      "price": 4507,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/rozborka-razborka-subaru-outback-b16-2020-2023-IDS7bUn.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Розборка Subaru Outback Субару Аутбек b16",
+      "price": 4507,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/rozborka-subaru-outback-subaru-autbek-b16-IDSsNbn.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Решітка радіатора, накладка бампера Subaru Outback b16 рестайл 2023",
+      "price": 6760,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/reshtka-radatora-nakladka-bampera-subaru-outback-b16-restayl-2023-IDU6rwE.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Розборка Subaru outback legacy 2020 2021 2022 2023",
+      "price": 45068,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/rozborka-subaru-outback-legacy-2020-2021-2022-2023-IDW4NvE.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Четверть Subaru Outback b16 2023 2024",
+      "price": 4507,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/chetvert-subaru-outback-b16-2023-2024-IDTSqwr.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "АКПП вариатор Subaru forester outback legacy 2020 2021 2022 2023",
+      "price": 45068,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/akpp-variator-subaru-forester-outback-legacy-2020-2021-2022-2023-IDSCZe4.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Усилитель HARMAN KARDON Subaru outback legacy b15 b16",
+      "price": 11267,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/usilitel-harman-kardon-subaru-outback-legacy-b15-b16-IDTIxex.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Диск Subaru outback b16 2023",
+      "price": 11267,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/disk-subaru-outback-b16-2023-IDSD27k.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Бампер Subaru outback b16 2022 2023 2024",
+      "price": 4507,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/bamper-subaru-outback-b16-2022-2023-2024-IDW8RpT.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Двигатель, мотор Subaru forester outback legacy F.B 2.5",
+      "price": 112670,
+      "city": "Київ, Шевченківський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/dvigatel-motor-subaru-forester-outback-legacy-f-b-2-5-IDS8AQL.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Підрамник Subaru forester outback legacy b16",
+      "price": 9014,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/pdramnik-subaru-forester-outback-legacy-b16-IDSD2NQ.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Решітка радіатора Subaru outback Legacy b16 2023",
+      "price": 11267,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/reshtka-radatora-subaru-outback-legacy-b16-2023-IDTjljg.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Бампер Subaru outback 2023 2024",
+      "price": 4507,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/bamper-subaru-outback-2023-2024-IDZcbnj.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Полка багажника, органайзер Subaru outback b16 2020 2023",
+      "price": 2600,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/polka-bagazhnika-organayzer-subaru-outback-b16-2020-2023-IDUSrX9.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Рейлинг Subaru outback b16 2020 2023",
+      "price": 6760,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/reyling-subaru-outback-b16-2020-2023-IDTtF2N.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Двері Subaru outback 2023 2024",
+      "price": 4507,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/dver-subaru-outback-2023-2024-IDZJsg0.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "AIR bag, ремень безопасности, торпедо Subaru outback legacy b16",
+      "price": 6760,
+      "city": "Київ, Голосіївський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/air-bag-remen-bezopasnosti-torpedo-subaru-outback-legacy-b16-IDSG5L3.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Телевизор, панель установочная Subaru outback legacy b16 2020-23",
+      "price": 27041,
+      "city": "Київ, Шевченківський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/televizor-panel-ustanovochnaya-subaru-outback-legacy-b16-2020-23-IDS8zWL.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Фонарь задний Subaru outback 2020 2021 2022 2023",
+      "price": 11267,
+      "city": "Чабани",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/fonar-zadniy-subaru-outback-2020-2021-2022-2023-IDWzSiD.html",
+      "description": "",
+      "images": []
+    },
+    {
+      "name": "Навигация, монитор, мультимедиа Subaru outback legacy b16",
+      "price": 11267,
+      "city": "Київ, Шевченківський",
+      "url": "https://www.olx.ua/d/uk/obyavlenie/navigatsiya-monitor-multimedia-subaru-outback-legacy-b16-IDSaeFS.html",
+      "description": "",
+      "images": []
+    }
   ];
 
   const grid = document.getElementById("grid");
   const empty = document.getElementById("empty");
-  const fmt = n => n.toLocaleString("uk-UA") + " грн";
+  const fmt = n => Number(n || 0).toLocaleString("uk-UA") + " грн";
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const photos = p => Array.isArray(p.images) ? p.images.filter(Boolean) : (p.img ? [p.img] : []);
+  let shown = [];
 
   function render(){
     const q = document.getElementById("search").value.trim().toLowerCase();
-    const b = document.getElementById("brand").value;
     const s = document.getElementById("sort").value;
-    let list = products.filter(p =>
-      (!b || p.brand === b) && (!q || p.name.toLowerCase().includes(q))
-    );
+    let list = products.filter(p => !q || String(p.name).toLowerCase().includes(q));
     if(s === "asc") list.sort((x,y)=>x.price-y.price);
     if(s === "desc") list.sort((x,y)=>y.price-x.price);
+    shown = list;
 
-    grid.innerHTML = list.map(p => `
-      <article class="card">
-        <div class="photo">${p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy">` : "⚙️"}</div>
+    grid.innerHTML = list.map((p, i) => {
+      const ph = photos(p);
+      return `
+      <article class="card" data-i="${i}">
+        <div class="photo">${ph[0] ? `<img src="${esc(ph[0])}" alt="${esc(p.name)}" loading="lazy" referrerpolicy="no-referrer">` : "⚙️"}${ph.length > 1 ? `<span class="cnt-ph">📷 ${ph.length}</span>` : ""}</div>
         <div class="info">
-          <span class="tag">${p.brand}</span>
-          <h3>${p.name}</h3>
-          <span class="loc">📍 ${p.city}</span>
+          <span class="tag">Subaru</span>
+          <h3>${esc(p.name)}</h3>
+          <span class="loc">📍 ${esc(p.city)}</span>
           <div class="row">
             <span class="price">${fmt(p.price)}</span>
-            <a href="${OLX}" target="_blank" rel="noopener">Детальніше</a>
+            <a href="#" data-open="${i}">Детальніше</a>
           </div>
         </div>
-      </article>`).join("");
+      </article>`;
+    }).join("");
     empty.style.display = list.length ? "none" : "block";
+    const c = document.getElementById("cnt"); if (c) c.textContent = products.length;
   }
 
-  ["search","brand","sort"].forEach(id =>
+  // ===== Вікно товару (як оголошення на OLX) =====
+  const modal = document.getElementById("pm");
+  function openProduct(i){
+    const p = shown[i]; if(!p) return;
+    const ph = photos(p);
+    const phone = C.PHONE || "097-927-37-66";
+    const tel = "tel:" + phone.replace(/[^\d+]/g, "");
+    document.getElementById("pmBody").innerHTML = `
+      <div class="pm-gal">
+        <div class="pm-main">${ph[0] ? `<img id="pmImg" src="${esc(ph[0])}" alt="${esc(p.name)}" referrerpolicy="no-referrer">` : `<div class="pm-noph">⚙️</div>`}</div>
+        ${ph.length > 1 ? `<div class="pm-thumbs">${ph.map((u, k) => `<img src="${esc(u)}" data-th="${k}" class="${k === 0 ? "on" : ""}" alt="" referrerpolicy="no-referrer">`).join("")}</div>` : ""}
+      </div>
+      <div class="pm-info">
+        <h3>${esc(p.name)}</h3>
+        <div class="pm-price">${fmt(p.price)}</div>
+        <div class="loc">📍 ${esc(p.city)}</div>
+        ${p.description ? `<p class="pm-desc">${esc(p.description)}</p>` : ""}
+        <a class="pm-btn" href="${esc(tel)}">📞 Зателефонувати ${esc(phone)}</a>
+        ${p.url ? `<a class="pm-btn ghost" href="${esc(p.url)}" target="_blank" rel="noopener">Дивитись на OLX →</a>` : ""}
+      </div>`;
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
+    const urls = ph;
+    document.getElementById("pmBody").onclick = e => {
+      const t = e.target.closest("[data-th]");
+      if(!t) return;
+      document.getElementById("pmImg").src = urls[Number(t.dataset.th)];
+      document.querySelectorAll(".pm-thumbs img").forEach(x => x.classList.toggle("on", x === t));
+    };
+  }
+  function closeProduct(){ modal.hidden = true; document.body.style.overflow = ""; }
+  modal.addEventListener("click", e => { if (e.target === modal || e.target.closest("[data-close]")) closeProduct(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeProduct(); });
+  grid.addEventListener("click", e => {
+    const card = e.target.closest(".card");
+    if (!card) return;
+    e.preventDefault();
+    openProduct(Number(card.dataset.i));
+  });
+
+  ["search","sort"].forEach(id =>
     document.getElementById(id).addEventListener("input", render));
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Телефон з config.js
+  if (C.PHONE) document.querySelectorAll("[data-phone]").forEach(a => {
+    a.textContent = C.PHONE;
+    a.href = "tel:" + C.PHONE.replace(/[^\d+]/g, "");
+  });
+
   render();
+
+  // ===== Товари з бази (Supabase) =====
+  (async () => {
+    if (!C.SUPABASE_URL || !C.SUPABASE_ANON_KEY) return;
+    try {
+      const r = await fetch(C.SUPABASE_URL + "/rest/v1/products?select=*&order=id.desc", {
+        headers: C.SUPABASE_ANON_KEY.startsWith("sb_")
+          ? { apikey: C.SUPABASE_ANON_KEY }
+          : { apikey: C.SUPABASE_ANON_KEY, Authorization: "Bearer " + C.SUPABASE_ANON_KEY }
+      });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const d = await r.json();
+      if (Array.isArray(d)) { products = d; render(); }
+    } catch (e) { console.warn("Не вдалося завантажити товари з бази:", e); }
+  })();
 </script>
 </body>
 </html>
